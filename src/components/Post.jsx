@@ -1,9 +1,7 @@
+import styles from './Post.module.css'
 
-function Post(props) {
-    <div>
-        <strong>{props.author}</strong>
-        <p>{props.content}</p>
-    </div>
-}
-
-export default Post
+export function Post() {
+    return (
+        <h1>Hello world</h1>
+    )
+};
