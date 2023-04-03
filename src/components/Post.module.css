@@ -29,33 +29,40 @@
 }
 
 .post > header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .post > header time {
-    font-size: 0.875rem;
-    color: var(--gray-400);
+  font-size: 0.875rem;
+  color: var(--gray-400);
 }
 
 .author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .authorInfo strong {
-    display: block;
-    color: var(--gray-100);
-    line-height: 1.6;
+  display: block;
+  color: var(--gray-100);
+  line-height: 1.6;
 }
 
 .authorInfo span {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--gray-400);
-    line-height: 1.6;
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+.commentForm {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-600);
 }
 
 .commentForm textarea {
@@ -74,14 +81,16 @@
 .commentForm footer {
   visibility: hidden;
   max-width: 0;
+  height: 0;
 }
 
 .commentForm:focus-within footer {
   visibility: visible;
   max-width: none;
+  height: auto;
 }
 
-.commentForm button[type=submit] {
+.commentForm button[type="submit"] {
   padding: 1rem 1.5rem;
   margin-top: 1rem;
   border-radius: 8px;
@@ -93,7 +102,7 @@
   transition: background-color 0.1s;
 }
 
-.commentForm button[type=submit]:hover {
+.commentForm button[type="submit"]:hover {
   background: var(--green-300);
 }
 
