@@ -6,25 +6,34 @@ import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
 export function Post({ author, publishedAt, content }) {
+ 
   const [comments, setComment] = useState([
-    1,
-    2,
-  ])
+   'Muito legal!!'
+  ]);
+
+  const [newCommentText, setNewCommentText] = useState('');
+
 
   function handleCreateNewComment() {
     event.preventDefault()
-  
-    setComment([...comments, comments.length + 1]);
+
+    setComment([...comments, newCommentText]);
+    setNewCommentText('')
   }
 
-const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
-  locale: ptBR,
-})
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value);
+  }
 
-const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
-  locale: ptBR,
-  addSuffix: true,
-})
+
+  const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR,
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
   return (
     <article className={styles.post}>
       <header>
@@ -58,7 +67,12 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder="Escreva um comentário..." />
+        <textarea 
+          name='comment' 
+          placeholder="Escreva um comentário..." 
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -67,7 +81,7 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment />
+          return <Comment content={comment} />
         })}
         
       </div>
