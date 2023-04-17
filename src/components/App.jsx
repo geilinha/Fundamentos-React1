@@ -55,20 +55,12 @@ function App() {
             return (
               (
                 <Post
+                  key={post.id}
                   author={post.author}
                   content={post.content}
                   publishedAt={post.publishedAt}
                 />
-              ),
-              (
-                <Post
-                  author={post.author}
-                  content={post.content}
-                  publishedAt={post.publishedAt}
-                />
-              )
-            );
-          })}
+              ))})}
         </main>
       </div>
     </div>
