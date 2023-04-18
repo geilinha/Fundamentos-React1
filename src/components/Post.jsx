@@ -22,12 +22,24 @@ export function Post({ author, publishedAt, content }) {
   }
 
   function handleNewCommentChange() {
+    event.target.setCustomValidity(''); 
     setNewCommentText(event.target.value);
   }
 
-  function deleteComment(comment) {
-    console.log(`Deletar comentário ${comment}`)
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = comments.filter(comment => {
+      return comment !== commentToDelete;
+    })
+
+    setComment(commentsWithoutDeletedOne);
+
   }
+
+  function handeNewCommentInvalid() {
+    event.target.setCustomValidity('Esse campo é obrigatório!')
+  }
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
 
   const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -76,10 +88,12 @@ export function Post({ author, publishedAt, content }) {
           placeholder="Escreva um comentário..." 
           value={newCommentText}
           onChange={handleNewCommentChange}
+          onInvalid={handeNewCommentInvalid}
+          required
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button disabled={isNewCommentEmpty} type="submit">Publicar</button>
         </footer>
       </form>
 
